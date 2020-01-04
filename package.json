@@ -2,8 +2,11 @@
   "name": "lib-executor",
   "displayName": "lib-executor",
   "description": "expand your lib",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "zer0-star",
+  "repository": {
+    "url": "https://github.com/zer0-star/lib-executor.git"
+  },
   "engines": {
     "vscode": "^1.40.0"
   },
@@ -15,6 +18,17 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "lib-executor",
+      "properties": {
+        "lib-executor.libraryPath": {
+          "title": "Library Path",
+          "type": "string",
+          "default": "/path/to/your_library",
+          "description": "Path to your library"
+        }
+      }
+    },
     "commands": [
       {
         "command": "lib-executor.execute",

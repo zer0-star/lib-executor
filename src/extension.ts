@@ -7,7 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration("lib-executor");
   const languageConfig = JSON.parse(
     fs.readFileSync(
-      config.get("libraryPath", "/Users/zer0-star/code/library/") +
+      config.get("libraryPath") +
         "languageconfig.json",
       "utf8"
     )
@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
         return result;
       }
       let baseUri =
-        config.get("libraryPath", "/Users/zer0-star/code/library/") +
+        config.get("libraryPath") +
         filetype +
         "/";
       let libUri = "";
