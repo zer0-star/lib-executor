@@ -8,7 +8,7 @@
     "url": "https://github.com/zer0-star/lib-executor.git"
   },
   "engines": {
-    "vscode": "^1.40.0"
+    "vscode": "^1.41.0"
   },
   "categories": [
     "Other"
@@ -55,17 +55,17 @@
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.11.7",
-    "@types/vscode": "^1.40.0",
-    "glob": "^7.1.5",
-    "mocha": "^6.2.2",
+    "@types/node": "^13.1.8",
+    "@types/vscode": "^1.41.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.0.0",
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",
-    "tslint": "^5.20.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.4",
-    "vscode-test": "^1.2.2",
-    "webpack": "^4.41.2",
+    "typescript": "^3.7.5",
+    "vscode-test": "^1.3.0",
+    "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
 }
