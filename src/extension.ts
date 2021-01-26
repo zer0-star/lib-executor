@@ -5,13 +5,14 @@ import * as fs from "fs";
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "lib-executer" is now active!');
   const config = vscode.workspace.getConfiguration("lib-executor");
-  const languageConfig = JSON.parse(
+  const getLanguageConfig = () => JSON.parse(
     fs.readFileSync(
       config.get("libraryPath") +
         "languageconfig.json",
       "utf8"
     )
   );
+  let languageConfig = getLanguageConfig();
 
   let disposable = vscode.commands.registerCommand(
     "lib-executor.execute",
@@ -51,7 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       quickPick.items = await getItems(baseUri, libUri, libUriFile);
       quickPick.onDidChangeValue(async e => {
-        let match = /(.*\/)?([^/]*)/.exec(e);
+        let match = /(.*\/)?([^\/]*)/.exec(e);
         if (isNull(match)) {
           return;
         }
@@ -74,6 +75,9 @@ export function activate(context: vscode.ExtensionContext) {
               break;
             case "include":
               cmdInclude(arg);
+              break;
+            case "remove":
+              cmdRemove(arg);
               break;
             default:
               break;
@@ -102,6 +106,24 @@ export function activate(context: vscode.ExtensionContext) {
         function cmdInclude(arg: string[]) {
           const path = arg[0];
           result += getFile(pwd, path) + "\n";
+        }
+        function cmdRemove(arg: string[]) {
+          while (true) {
+            try {
+              let str = line[++i];
+            } catch (error) {
+              vscode.window.showErrorMessage(error.toString());
+            }
+            const match = /.{0,5}%lib-executor: *(.+)/.exec(line[i]);
+            if (!isNull(match)) {
+              const [cmd, ...arg] = match[1].split(" ");
+              if (cmd === "end") {
+                break;
+              } else {
+                // chooseCmd(cmd, arg);
+              }
+            }
+          }
         }
         while (i < len) {
           const match = /.{0,5}%lib-executor: *(.+)/.exec(line[i]);
@@ -166,6 +188,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(disposable);
+  context.subscriptions.push(vscode.commands.registerCommand("lib-executor.reloadConfig", () => languageConfig = getLanguageConfig()));
 }
 
 export function deactivate() {}
