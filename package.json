@@ -39,6 +39,7 @@
     "keybindings": [
       {
         "mac": "cmd+ctrl+e",
+        "linux": "alt+ctrl+e",
         "command": "lib-executor.execute"
       }
     ]
